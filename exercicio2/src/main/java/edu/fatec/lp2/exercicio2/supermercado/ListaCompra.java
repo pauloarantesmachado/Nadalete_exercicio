@@ -1,16 +1,20 @@
 package edu.fatec.lp2.exercicio2.supermercado;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.List;
 
-@AllArgsConstructor
+
 @Getter
 public class ListaCompra implements Calculavel{
     private List<ItemCompra> itensCompra;
     private int qTdMax;
+    private int count =0;
 
+    public ListaCompra(List<ItemCompra> itensCompra, int qTdMax) {
+        this.itensCompra = itensCompra;
+        this.qTdMax = qTdMax;
+    }
 
     @Override
     public double calculaPreco() {
@@ -20,6 +24,11 @@ public class ListaCompra implements Calculavel{
     }
 
     public void incluir(ItemCompra item){
-        this.itensCompra.add(item);
+        if(this.count < this.qTdMax){
+            this.count++;
+            this.incluir(item);
+            this.itensCompra.add(item);
+        }
+        
     }
 }
