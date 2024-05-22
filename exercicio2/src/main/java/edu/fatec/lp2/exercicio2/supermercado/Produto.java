@@ -7,7 +7,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
 public class Produto {
     private String nome;
@@ -16,4 +15,13 @@ public class Produto {
     private double preco;
     private double descontoMax;
     private Supermercado supermercado;
+    
+    public Produto (String nome, String unidade, String descricao, double preco, double descontoMAx, Supermercado supermercado){
+        this.nome = nome;
+        this.unidade = unidade;
+        this.descricao = descricao;
+        this.preco = preco*(1-descontoMax);
+        this.descontoMax = descontoMAx;
+        this.supermercado = supermercado;
+    }
 }
